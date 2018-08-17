@@ -5,7 +5,7 @@
 		public MyOptions()
 		{
 			// Set default value.
-			Option1 = "value1_from_ctor";
+			Option1 = "value1_from_ctor1";
 		}
 
 		public string Option1 { get; set; }
