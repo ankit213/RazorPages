@@ -1,0 +1,42 @@
+﻿@page
+@model RazorPagesMoive.Pages.IndexModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@inject Microsoft.AspNetCore.Hosting.IHostingEnvironment hostingEnv
+@{
+    ViewData["Title"] = "Index";
+}
+
+<p> ASPNETCORE_ENVIRONMENT = @hostingEnv.EnvironmentName</p>
+
+<h1>Contacts</h1>
+<form method="post">
+    <h4>@Model.SnapshotOptions</h4>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var contact in Model.Customers)
+            {
+                <tr>
+                    <td>@contact.Id</td>
+                    <td>@contact.Name</td>
+                    <td>
+                        <a asp-page="./Edit" asp-route-id="@contact.Id">edit</a>
+                        <button type="submit" asp-page-handler="delete"
+                                asp-route-id="@contact.Id">
+                            delete
+                        </button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    @Html.Raw(Model.FileContents)
+    @*<button class="btn btn-success" asp-page-handler="StartMonitoring">Start Monitoring</button>
+        <button class="btn btn-danger" asp-page-handler="StopMonitoring">Stop Monitoring</button>*@
+    <a asp-page="./Contact">Create</a>
+</form>
